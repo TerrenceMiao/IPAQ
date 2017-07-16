@@ -1,4 +1,4 @@
-package org.paradise.colt
+package org.paradise.ipaq
 
 import org.junit.Test
 import org.junit.runner.RunWith

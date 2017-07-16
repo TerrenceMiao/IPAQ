@@ -1,4 +1,4 @@
-package org.paradise.colt
+package org.paradise.ipaq
 
 import org.springframework.boot.SpringApplication
 import org.springframework.boot.autoconfigure.SpringBootApplication
