@@ -20,6 +20,9 @@ build/
 .idea/
 *.iml
 
+# application.properties only for local profile
+application.properties
+
 # Package Files #
 *.jar
 *.war
