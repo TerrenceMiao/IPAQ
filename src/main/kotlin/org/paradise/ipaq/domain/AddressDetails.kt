@@ -10,24 +10,24 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 class AddressDetails {
 
     @JsonProperty("addressLine1")
-    var addressLine1 = null
+    var addressLine1: String? = null
 
     @JsonProperty("addressLine2")
-    var addressLine2 = null
+    var addressLine2: String? = null
 
     @JsonProperty("addressLine3")
-    var addressLine3 = null
+    var addressLine3: String? = null
 
     @JsonProperty("city")
-    var city = null
+    var city: String? = null
 
     @JsonProperty("state")
-    var state = null
+    var state: String? = null
 
     @JsonProperty("postcode")
-    var postcode = null
+    var postcode: String? = null
 
     @JsonProperty("country")
-    var country = null
+    var country: String? = null
 
 }

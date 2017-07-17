@@ -8,9 +8,9 @@ import org.apache.commons.lang3.tuple.ImmutablePair
 class ExperianAddress {
 
     @JsonProperty("address")
-    private var address: List<ImmutablePair<String, String>> = ArrayList()
+    private var address: List<ImmutablePair<String, String>>? = null
 
     @JsonProperty("components")
-    private var components: List<ImmutablePair<String, String>> = ArrayList()
+    private var components: List<ImmutablePair<String, String>>? = null
 
 }

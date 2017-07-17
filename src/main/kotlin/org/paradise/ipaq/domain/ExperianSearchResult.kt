@@ -7,9 +7,9 @@ import com.fasterxml.jackson.annotation.JsonProperty
 class ExperianSearchResult {
 
     @JsonProperty("count")
-    var count = 0
+    var count: Int = 0
 
     @JsonProperty("results")
-    var results: List<ExperianSearchMatchedItem> = ArrayList()
+    var results: List<ExperianSearchMatchedItem>? = null
 
 }
