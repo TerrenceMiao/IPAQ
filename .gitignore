@@ -21,7 +21,7 @@ build/
 *.iml
 
 # application.properties only for local profile
-application.properties
+**/application.properties
 
 # Package Files #
 *.jar
