@@ -1,6 +1,5 @@
 package org.paradise.ipaq.services.rest
 
-import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpEntity
 import org.springframework.http.HttpMethod
 import org.springframework.http.ResponseEntity
@@ -15,9 +14,7 @@ import java.io.IOException
  * RESTful service client, based on Spring RestTemplate and Apache HTTP Client.
  */
 @Component
-class RestServiceClient
-@Autowired
-constructor(httpComponentsClientHttpRequestFactory: HttpComponentsClientHttpRequestFactory) {
+class RestServiceClient(httpComponentsClientHttpRequestFactory: HttpComponentsClientHttpRequestFactory) {
 
     private val restTemplate: RestTemplate = RestTemplate()
 
