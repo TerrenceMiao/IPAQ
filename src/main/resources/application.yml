@@ -1,1 +1,5 @@
+app.experian.api:
+  url:
+  token:
+
 spring.session.store-type: none
