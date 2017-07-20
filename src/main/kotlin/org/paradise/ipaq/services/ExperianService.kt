@@ -1,5 +1,6 @@
 package org.paradise.ipaq.services
 
+import org.paradise.ipaq.domain.ExperianAddress
 import org.paradise.ipaq.domain.ExperianSearchResult
 import org.paradise.ipaq.services.rest.RestServiceClient
 import org.slf4j.LoggerFactory
@@ -24,6 +25,15 @@ class ExperianService(private val restServiceClient: RestServiceClient,
         return restServiceClient.exchange(urlStr, HttpMethod.GET, HttpEntity<Any>(requestHttpHeaders), ExperianSearchResult::class.java)
     }
 
+    fun format(country: String?, id: String?): ResponseEntity<ExperianAddress> {
+
+        LOG.debug("Format address for country [{}] and id [{}]", country, id)
+
+        val urlStr = String.format(DETAILS_URL_FORMAT, experianApiUrl, country, id)
+
+        return restServiceClient.exchange(urlStr, HttpMethod.GET, HttpEntity<Any>(requestHttpHeaders), ExperianAddress::class.java)
+    }
+
     private val requestHttpHeaders: HttpHeaders
         get() {
             val requestHeaders = HttpHeaders()
@@ -38,7 +48,7 @@ class ExperianService(private val restServiceClient: RestServiceClient,
 
         private val LOG = LoggerFactory.getLogger(ExperianService::class.java)
 
-        private val HTTP_HEADER_AUTH_TOKEN = "auth-token"
+        private val HTTP_HEADER_AUTH_TOKEN = "Auth-Token"
 
         private val SEARCH_URL_FORMAT = "%s/Search?query=%s&country=%s&take=%s"
         private val DETAILS_URL_FORMAT = "%s/format?country=%s&id=%s"

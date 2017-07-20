@@ -1,5 +1,6 @@
 package org.paradise.ipaq.controllers
 
+import org.paradise.ipaq.domain.ExperianAddress
 import org.paradise.ipaq.domain.ExperianSearchResult
 import org.paradise.ipaq.services.ExperianService
 import org.springframework.http.MediaType
@@ -21,6 +22,13 @@ class ipaqController(private val experianService: ExperianService) {
                @RequestParam(value = "take", defaultValue = "10") take: Int): ResponseEntity<ExperianSearchResult> {
 
         return experianService.search(query, country, take)
+    }
+
+    @RequestMapping(value = "/format", method = arrayOf(RequestMethod.GET), produces = arrayOf(MediaType.APPLICATION_JSON_VALUE))
+    fun format(@RequestParam(value = "country") country: String? = null,
+               @RequestParam(value = "id") id: String? = null): ResponseEntity<ExperianAddress> {
+
+        return experianService.format(country, id)
     }
 
 }
