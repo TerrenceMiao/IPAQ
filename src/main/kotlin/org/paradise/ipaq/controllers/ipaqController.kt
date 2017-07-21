@@ -17,18 +17,15 @@ import org.springframework.web.bind.annotation.RestController
 class ipaqController(val experianService: ExperianService) {
 
     @RequestMapping(value = "/Search", method = arrayOf(RequestMethod.GET), produces = arrayOf(MediaType.APPLICATION_JSON_VALUE))
-    fun search(@RequestParam(value = "query") query: String? = null,
-               @RequestParam(value = "country") country: String? = null,
-               @RequestParam(value = "take", defaultValue = "10") take: Int): ResponseEntity<ExperianSearchResult> {
+    fun search(@RequestParam(value = "query") query: String,
+               @RequestParam(value = "country") country: String,
+               @RequestParam(value = "take", defaultValue = "10") take: Int): ResponseEntity<ExperianSearchResult>
+            = experianService.search(query, country, take)
 
-        return experianService.search(query, country, take)
-    }
 
     @RequestMapping(value = "/format", method = arrayOf(RequestMethod.GET), produces = arrayOf(MediaType.APPLICATION_JSON_VALUE))
-    fun format(@RequestParam(value = "country") country: String? = null,
-               @RequestParam(value = "id") id: String? = null): ResponseEntity<ExperianAddress> {
-
-        return experianService.format(country, id)
-    }
+    fun format(@RequestParam(value = "country") country: String,
+               @RequestParam(value = "id") id: String): ResponseEntity<ExperianAddress>
+            = experianService.format(country, id)
 
 }
