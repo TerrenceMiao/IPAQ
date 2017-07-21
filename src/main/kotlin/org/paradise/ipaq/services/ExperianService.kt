@@ -12,11 +12,11 @@ import org.springframework.stereotype.Service
  * Created by terrence on 17/7/17.
  */
 @Service
-class ExperianService(private val restServiceClient: RestServiceClient,
-                      @param:Value("\${app.experian.api.url}") private val experianApiUrl: String,
-                      @param:Value("\${app.experian.api.token}") private val experianApiToken: String) {
+class ExperianService(val restServiceClient: RestServiceClient,
+                      @param:Value("\${app.experian.api.url}") val experianApiUrl: String,
+                      @param:Value("\${app.experian.api.token}") val experianApiToken: String) {
 
-    fun search(query: String?, country: String?, take: Int): ResponseEntity<ExperianSearchResult> {
+    fun search(query: String, country: String, take: Int): ResponseEntity<ExperianSearchResult> {
 
         LOG.debug("Search address with query [{}], country [{}] and take [{}]", query, country, take)
 
@@ -25,7 +25,7 @@ class ExperianService(private val restServiceClient: RestServiceClient,
         return restServiceClient.exchange(urlStr, HttpMethod.GET, HttpEntity<Any>(requestHttpHeaders), ExperianSearchResult::class.java)
     }
 
-    fun format(country: String?, id: String?): ResponseEntity<ExperianAddress> {
+    fun format(country: String, id: String): ResponseEntity<ExperianAddress> {
 
         LOG.debug("Format address for country [{}] and id [{}]", country, id)
 
