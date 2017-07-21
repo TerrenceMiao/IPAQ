@@ -4,12 +4,5 @@ import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.annotation.JsonProperty
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-class ExperianAddress {
-
-    @JsonProperty("address")
-    private var address: List<Map<String, String>>? = null
-
-    @JsonProperty("components")
-    private var components: List<Map<String, String>>? = null
-
-}
+data class ExperianAddress(@JsonProperty("address") val address: List<Map<String, String>>,
+                           @JsonProperty("components") val components: List<Map<String, String>>)
