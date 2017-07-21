@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController
  * Created by terrence on 17/7/17.
  */
 @RestController
-class ipaqController(private val experianService: ExperianService) {
+class ipaqController(val experianService: ExperianService) {
 
     @RequestMapping(value = "/Search", method = arrayOf(RequestMethod.GET), produces = arrayOf(MediaType.APPLICATION_JSON_VALUE))
     fun search(@RequestParam(value = "query") query: String? = null,
