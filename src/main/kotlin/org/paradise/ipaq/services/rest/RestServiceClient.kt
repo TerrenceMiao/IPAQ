@@ -19,17 +19,12 @@ class RestServiceClient(httpComponentsClientHttpRequestFactory: HttpComponentsCl
     private val restTemplate: RestTemplate = RestTemplate()
 
     init {
-
         restTemplate.requestFactory = httpComponentsClientHttpRequestFactory
-
         restTemplate.errorHandler = createResponseErrorHandler()
     }
 
-    fun <T> exchange(url: String, method: HttpMethod, requestEntity: HttpEntity<*>, responseType: Class<T>,
-                     vararg uriVariables: Any): ResponseEntity<T> {
-
-        return restTemplate.exchange(url, method, requestEntity, responseType, *uriVariables)
-    }
+    fun <T> exchange(url: String, method: HttpMethod, requestEntity: HttpEntity<*>, responseType: Class<T>, vararg uriVariables: Any): ResponseEntity<T>
+            = restTemplate.exchange(url, method, requestEntity, responseType, *uriVariables)
 
     /**
      * By pass the default Exception Handler. When make RESTful call, disable any error handler when use this
