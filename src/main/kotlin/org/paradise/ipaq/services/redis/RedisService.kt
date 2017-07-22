@@ -49,7 +49,7 @@ class RedisService(val redisClient: RedisClient, val objectMapper: ObjectMapper)
                 }
             }
         } else {
-            LOG.error(CANT_FIND_IN_REDIS_SERVER)
+            LOG.info(CANT_FIND_IN_REDIS_SERVER)
         }
 
         return null

@@ -19,7 +19,7 @@ class RedisClient(val stringRedisTemplate: StringRedisTemplate) {
         return valueOperations.get(key) ?: throw RedisSystemException("Redis Server persistence error", null)
     }
 
-    fun get(key: String): String = valueOperations.get(key)
+    fun get(key: String): String? = valueOperations.get(key)
 
     fun delete(key: String) = stringRedisTemplate.delete(key)
 
