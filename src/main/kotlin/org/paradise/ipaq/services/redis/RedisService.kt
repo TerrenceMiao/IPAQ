@@ -19,8 +19,8 @@ class RedisService(val redisClient: RedisClient, val objectMapper: ObjectMapper)
 
         var jsonAsString: String? = try {
             objectMapper.writeValueAsString(json)
-        } catch (e: JsonProcessingException) {
-            LOG.error("Exception thrown while serialising JSON object: [{}]", e.message)
+        } catch (ex: JsonProcessingException) {
+            LOG.error("Exception thrown while serialising JSON object: [{}]", ex.message)
             null
         }
 
@@ -49,7 +49,7 @@ class RedisService(val redisClient: RedisClient, val objectMapper: ObjectMapper)
                 }
             }
         } else {
-            LOG.info(CANT_FIND_IN_REDIS_SERVER)
+            LOG.info(CANT_FIND_KEY_IN_REDIS_SERVER)
         }
 
         return null
@@ -64,7 +64,7 @@ class RedisService(val redisClient: RedisClient, val objectMapper: ObjectMapper)
 
     companion object {
 
-        val CANT_FIND_IN_REDIS_SERVER = "Can't find in Redis server"
+        val CANT_FIND_KEY_IN_REDIS_SERVER = "Can't find key in Redis server"
 
         private val LOG = LoggerFactory.getLogger(RedisService::class.java)
     }
