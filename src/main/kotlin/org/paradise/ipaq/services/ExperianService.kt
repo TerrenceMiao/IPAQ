@@ -20,18 +20,16 @@ class ExperianService(val restServiceClient: RestServiceClient,
 
         LOG.debug("Search address with query [{}], country [{}] and take [{}]", query, country, take)
 
-        val urlStr = String.format(SEARCH_URL_FORMAT, experianApiUrl, query, country, take)
-
-        return restServiceClient.exchange(urlStr, HttpMethod.GET, HttpEntity<Any>(requestHttpHeaders), ExperianSearchResult::class.java)
+        return restServiceClient.exchange(String.format(SEARCH_URL_FORMAT, experianApiUrl, query, country, take),
+                HttpMethod.GET, HttpEntity<Any>(requestHttpHeaders), ExperianSearchResult::class.java)
     }
 
     fun format(country: String, id: String): ResponseEntity<ExperianAddress> {
 
         LOG.debug("Format address for country [{}] and id [{}]", country, id)
 
-        val urlStr = String.format(DETAILS_URL_FORMAT, experianApiUrl, country, id)
-
-        return restServiceClient.exchange(urlStr, HttpMethod.GET, HttpEntity<Any>(requestHttpHeaders), ExperianAddress::class.java)
+        return restServiceClient.exchange(String.format(DETAILS_URL_FORMAT, experianApiUrl, country, id),
+                HttpMethod.GET, HttpEntity<Any>(requestHttpHeaders), ExperianAddress::class.java)
     }
 
     private val requestHttpHeaders: HttpHeaders
