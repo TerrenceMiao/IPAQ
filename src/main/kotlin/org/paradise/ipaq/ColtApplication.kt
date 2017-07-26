@@ -9,6 +9,8 @@ class ColtApplication
 object Constants {
 
     val CUSTOMER_NAME_VARIABLE: String = "customer_name"
+
+    val MAXIMUM_TAKE: Int = 100
 }
 
 fun main(args: Array<String>) {

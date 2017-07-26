@@ -1,5 +1,6 @@
 package org.paradise.ipaq.services
 
+import org.paradise.ipaq.Constants
 import org.paradise.ipaq.domain.ExperianAddress
 import org.paradise.ipaq.domain.ExperianSearchResult
 import org.paradise.ipaq.services.redis.RedisService
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Value
 import org.springframework.http.*
 import org.springframework.stereotype.Service
 import java.util.*
+import kotlin.streams.toList
 
 /**
  * Created by terrence on 17/7/17.
@@ -25,20 +27,21 @@ class ExperianService(val restServiceClient: RestServiceClient,
 
         val key = query + ", " + country
 
-        val experianSearchResult = redisService.get(key, ExperianSearchResult::class.java)
+        var experianSearchResult = redisService.get(key, ExperianSearchResult::class.java)
 
-        if (Objects.nonNull(experianSearchResult)) {
-            return ResponseEntity(experianSearchResult!!, HttpStatus.OK)
-        } else {
-            val experianSearchResultResponseEntity = restServiceClient.exchange(String.format(SEARCH_URL_FORMAT, experianApiUrl, query, country, take),
+        if (Objects.isNull(experianSearchResult)) {
+            val experianSearchResultResponseEntity = restServiceClient.exchange(
+                    String.format(SEARCH_URL_FORMAT, experianApiUrl, query, country, Constants.MAXIMUM_TAKE),
                     HttpMethod.GET, HttpEntity<Any>(requestHttpHeaders), ExperianSearchResult::class.java)
 
-            if (Objects.nonNull(experianSearchResultResponseEntity.body)) {
+            if (experianSearchResultResponseEntity.hasBody() && experianSearchResultResponseEntity.body.count > 0) {
                 redisService.persist(key, experianSearchResultResponseEntity.body)
             }
 
-            return experianSearchResultResponseEntity
+            experianSearchResult = experianSearchResultResponseEntity.body
         }
+
+        return ResponseEntity(takeExperianSearchResult(experianSearchResult!!, take), HttpStatus.OK)
     }
 
     fun format(country: String, id: String): ResponseEntity<ExperianAddress> {
@@ -47,6 +50,11 @@ class ExperianService(val restServiceClient: RestServiceClient,
 
         return restServiceClient.exchange(String.format(DETAILS_URL_FORMAT, experianApiUrl, country, id),
                 HttpMethod.GET, HttpEntity<Any>(requestHttpHeaders), ExperianAddress::class.java)
+    }
+
+    private fun takeExperianSearchResult(experianSearchResult: ExperianSearchResult, take: Int): ExperianSearchResult {
+
+        return if (experianSearchResult.count > take) ExperianSearchResult(take, experianSearchResult.results.stream().limit(take.toLong()).toList()) else experianSearchResult
     }
 
     private val requestHttpHeaders: HttpHeaders
