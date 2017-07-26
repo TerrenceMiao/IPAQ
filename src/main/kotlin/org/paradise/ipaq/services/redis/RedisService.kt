@@ -49,7 +49,7 @@ class RedisService(val redisClient: RedisClient, val objectMapper: ObjectMapper)
                 }
             }
         } else {
-            LOG.info(CANT_FIND_KEY_IN_REDIS_SERVER)
+            LOG.info(CANT_FIND_KEY_IN_REDIS_SERVER, key)
         }
 
         return null
@@ -64,7 +64,7 @@ class RedisService(val redisClient: RedisClient, val objectMapper: ObjectMapper)
 
     companion object {
 
-        val CANT_FIND_KEY_IN_REDIS_SERVER = "Can't find key in Redis server"
+        val CANT_FIND_KEY_IN_REDIS_SERVER = "Can't find key [{}] in Redis server"
 
         private val LOG = LoggerFactory.getLogger(RedisService::class.java)
     }
