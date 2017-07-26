@@ -7,6 +7,7 @@ buildscript {
 		httpClientVersion = '4.5.2'
 		thymeleafVersion = '3.0.6.RELEASE'
 		thymeleafLayoutDialectVersion = '2.2.2'
+		janinoVersion = '3.0.7'
 	}
 
 	repositories {
@@ -64,6 +65,9 @@ dependencies {
 	compile("org.apache.commons:commons-lang3:${apacheCommonsLang3Version}")
 
 	compile("org.apache.httpcomponents:httpclient:${httpClientVersion}")
+
+	// Janino library supports conditional processing and JaninoEventEvaluator in Logback
+	compile("org.codehaus.janino:janino:${janinoVersion}")
 
 	runtime('org.springframework.boot:spring-boot-devtools')
 
