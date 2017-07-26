@@ -48,8 +48,24 @@ class ExperianService(val restServiceClient: RestServiceClient,
 
         LOG.debug("Format address for country [{}] and id [{}]", country, id)
 
-        return restServiceClient.exchange(String.format(DETAILS_URL_FORMAT, experianApiUrl, country, id),
-                HttpMethod.GET, HttpEntity<Any>(requestHttpHeaders), ExperianAddress::class.java)
+        val key = id + ", " + country
+
+        var experianAddressResult = redisService.get(key, ExperianAddress::class.java)
+
+        if (Objects.isNull(experianAddressResult)) {
+            val experianAddressResultResponseEntity = restServiceClient.exchange(String.format(DETAILS_URL_FORMAT, experianApiUrl, country, id),
+                    HttpMethod.GET, HttpEntity<Any>(requestHttpHeaders), ExperianAddress::class.java)
+
+            if (experianAddressResultResponseEntity.hasBody()
+                    && Objects.nonNull(experianAddressResultResponseEntity.body.address)
+                    && Objects.nonNull(experianAddressResultResponseEntity.body.components)) {
+                redisService.persist(key, experianAddressResultResponseEntity.body)
+            }
+
+            experianAddressResult = experianAddressResultResponseEntity.body
+        }
+
+        return ResponseEntity(experianAddressResult!!, HttpStatus.OK)
     }
 
     private fun takeExperianSearchResult(experianSearchResult: ExperianSearchResult, take: Int): ExperianSearchResult {
