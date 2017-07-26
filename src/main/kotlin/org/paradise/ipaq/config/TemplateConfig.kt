@@ -8,8 +8,6 @@ import org.springframework.context.annotation.Configuration
 import org.thymeleaf.spring4.SpringTemplateEngine
 import org.thymeleaf.spring4.templateresolver.SpringResourceTemplateResolver
 import org.thymeleaf.templatemode.TemplateMode
-import java.lang.Boolean
-import kotlin.String
 
 /**
  * Created by terrence on 25/7/17.
@@ -40,7 +38,7 @@ class TemplateConfig {
         plaintextTemplateResolver.setApplicationContext(applicationContext)
         plaintextTemplateResolver.prefix = plaintextTemplateDirectory
         plaintextTemplateResolver.suffix = ".txt"
-        plaintextTemplateResolver.isCacheable = Boolean.TRUE
+        plaintextTemplateResolver.isCacheable = true
         plaintextTemplateResolver.templateMode = TemplateMode.TEXT
 
         return plaintextTemplateResolver

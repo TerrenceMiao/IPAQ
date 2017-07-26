@@ -4,15 +4,12 @@ import org.apache.commons.lang3.math.NumberUtils
 import org.apache.http.HttpHost
 import org.apache.http.auth.AuthScope
 import org.apache.http.auth.UsernamePasswordCredentials
-import org.apache.http.client.CredentialsProvider
 import org.apache.http.impl.client.BasicCredentialsProvider
 import org.apache.http.impl.client.HttpClientBuilder
 import org.apache.http.impl.client.ProxyAuthenticationStrategy
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory
-
-import java.util.Properties
 
 /**
  * Created by terrence on 13/5/17.
@@ -41,7 +38,7 @@ class ProxyConfig {
 
         val httpClientBuilder = HttpClientBuilder.create()
 
-        if (proxyHost != null && proxyPort !== -1) {
+        if (proxyHost != null && proxyPort != -1) {
             httpClientBuilder.setProxy(HttpHost(proxyHost, proxyPort))
 
             if (proxyUser != null && proxyPassword != null) {

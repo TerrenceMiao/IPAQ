@@ -20,7 +20,7 @@ class MailService(val springTemplateEngine: SpringTemplateEngine) {
         val context = Context()
         context.setVariable(Constants.CUSTOMER_NAME_VARIABLE, "John Smith")
 
-        val emailBody = springTemplateEngine.process(emailTemplate, context)
+        springTemplateEngine.process(emailTemplate, context)
 
         return true
     }
