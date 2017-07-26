@@ -5,6 +5,8 @@ buildscript {
 		springBootVersion = '1.5.4.RELEASE'
 		apacheCommonsLang3Version = '3.6'
 		httpClientVersion = '4.5.2'
+		thymeleafVersion = '3.0.6.RELEASE'
+		thymeleafLayoutDialectVersion = '2.2.2'
 	}
 
 	repositories {
@@ -46,8 +48,15 @@ dependencies {
 
 	compile('org.springframework.cloud:spring-cloud-starter-sleuth')
 	compile('org.springframework.session:spring-session')
+
 	compile('org.springframework.boot:spring-boot-starter-web')
 	compile('org.springframework.boot:spring-boot-starter-data-redis')
+	compile('org.springframework.boot:spring-boot-starter-thymeleaf')
+
+	// Thymeleaf
+	compile("org.thymeleaf:thymeleaf-spring4:${thymeleafVersion}")
+	compile("org.thymeleaf:thymeleaf:${thymeleafVersion}")
+	compile("nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect:${thymeleafLayoutDialectVersion}")
 
 	compile("org.jetbrains.kotlin:kotlin-stdlib-jre8:${kotlinVersion}")
 	compile("org.jetbrains.kotlin:kotlin-reflect:${kotlinVersion}")

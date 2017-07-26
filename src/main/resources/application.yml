@@ -1,5 +1,10 @@
-app.experian.api:
-  url:
-  token:
+app:
+  experian.api:
+    url:
+    token:
+  template.plaintext:
+    directory: "/WEB-INF/templates/text/"
+    file:
+      email: "email.txt"
 
 spring.session.store-type: none

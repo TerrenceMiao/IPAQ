@@ -1,0 +1,8 @@
+Dear customer [(${customer_name})],
+
+During last 3 months ...
+
+
+Kind regards,
+
+Paradise Corp
