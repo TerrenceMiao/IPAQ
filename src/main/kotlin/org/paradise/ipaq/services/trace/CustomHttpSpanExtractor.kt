@@ -20,8 +20,9 @@ class CustomHttpSpanExtractor(skipPattern: Pattern) : ZipkinHttpSpanExtractor(sk
 
         val country = map[Constants.COUNTRY]
 
-        LOG.debug("Extracting trace data with environment [{}]", country)
+        LOG.debug("Extracting trace data with country [{}]", country)
 
+        // Enable SPAN explorable
         carrier.put(Span.SPAN_FLAGS, "1")
 
         val span = super.joinTrace(carrier)

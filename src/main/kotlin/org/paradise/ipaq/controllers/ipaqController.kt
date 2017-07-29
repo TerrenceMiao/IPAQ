@@ -3,7 +3,6 @@ package org.paradise.ipaq.controllers
 import org.paradise.ipaq.domain.ExperianAddress
 import org.paradise.ipaq.domain.ExperianSearchResult
 import org.paradise.ipaq.services.ExperianService
-import org.springframework.cloud.sleuth.Tracer
 import org.springframework.http.MediaType
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.RequestMapping
@@ -14,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController
  * Created by terrence on 17/7/17.
  */
 @RestController
-class IpaqController(val experianService: ExperianService, val tracer: Tracer, var environmentLocal: EnvironmentLocal) {
+class IpaqController(val experianService: ExperianService, var environmentLocal: EnvironmentLocal) {
 
     @RequestMapping(value = "/Search", method = arrayOf(RequestMethod.GET), produces = arrayOf(MediaType.APPLICATION_JSON_VALUE))
     fun search(@RequestParam(value = "query") query: String,
@@ -25,11 +24,6 @@ class IpaqController(val experianService: ExperianService, val tracer: Tracer, v
         environmentLocal.query = query
         environmentLocal.country = country
 
-        tracer.addTag(COUNTRY, country)
-
-        val span = tracer.currentSpan
-        span.setBaggageItem(COUNTRY, country)
-
         return experianService.search(query, country, take)
     }
 
@@ -37,11 +31,6 @@ class IpaqController(val experianService: ExperianService, val tracer: Tracer, v
     fun format(@RequestParam(value = "country") country: String,
                @RequestParam(value = "id") id: String): ResponseEntity<ExperianAddress>
             = experianService.format(country, id)
-
-    companion object {
-
-        private val COUNTRY = "Country"
-    }
 
 }
 

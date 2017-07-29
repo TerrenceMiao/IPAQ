@@ -16,7 +16,7 @@ class CustomHttpSpanInjector : ZipkinHttpSpanInjector() {
 
         val country = span.getBaggageItem(Constants.COUNTRY)
 
-        LOG.debug("Inject environment [{}] into trace", country)
+        LOG.debug("Inject country [{}] into trace", country)
 
         if (StringUtils.isNotEmpty(country)) {
             carrier.put(Constants.COUNTRY, country)
