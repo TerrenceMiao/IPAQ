@@ -10,4 +10,6 @@ object Constants {
     val COUNTRY: String = "Country"
 
     val MAXIMUM_TAKE: Int = 100
+
+    val HTTP_HEADER_AUTH_TOKEN = "Auth-Token"
 }

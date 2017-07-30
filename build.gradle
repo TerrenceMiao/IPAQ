@@ -11,7 +11,7 @@ buildscript {
 		ioUtilsVersion = '2.5'
 
 		jaywayRestassuredVersion = '2.9.0'
-		mockServerNettyVersion = '3.10.4'
+		mockServerNettyVersion = '3.10.5'
 	}
 
 	repositories {

@@ -78,7 +78,7 @@ class ExperianService(val restServiceClient: RestServiceClient,
             val requestHeaders = HttpHeaders()
 
             requestHeaders.accept = listOf<MediaType>(MediaType.APPLICATION_JSON)
-            requestHeaders.set(HTTP_HEADER_AUTH_TOKEN, experianApiToken)
+            requestHeaders.set(Constants.HTTP_HEADER_AUTH_TOKEN, experianApiToken)
 
             return requestHeaders
         }
@@ -86,8 +86,6 @@ class ExperianService(val restServiceClient: RestServiceClient,
     companion object {
 
         private val LOG = LoggerFactory.getLogger(ExperianService::class.java)
-
-        private val HTTP_HEADER_AUTH_TOKEN = "Auth-Token"
 
         private val SEARCH_URL_FORMAT = "%s/Search?query=%s&country=%s&take=%s"
         private val DETAILS_URL_FORMAT = "%s/format?country=%s&id=%s"

@@ -38,8 +38,8 @@ abstract class AbstractIntegrationTest {
 
     protected var mock: MockMvc? = null
 
-    @Value("\${local.server.port:0}")
-    private val port: Int = 0
+    @Value("\${local.server.port}")
+    protected val port: Int = 0
 
 
     @Before
@@ -69,7 +69,7 @@ abstract class AbstractIntegrationTest {
 
         val MOCK_SERVER_PORT = 8000
 
-        protected var mockServerClient: MockServerClient? = null
+        var mockServerClient: MockServerClient? = null
 
         @BeforeClass
         @JvmStatic

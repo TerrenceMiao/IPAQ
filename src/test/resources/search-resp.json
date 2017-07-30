@@ -1,0 +1,185 @@
+{
+  "count": 10,
+  "results": [
+    {
+      "suggestion": "1 Infinite Loop, Cupertino CA 95014",
+      "matched": [
+        [
+          11,
+          15
+        ],
+        [
+          2,
+          10
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "format": "https://api.edq.com/capture/address/v2/format?country=USA&id=AVtsW5-i_VTqnTiM1gJV_U40_24_0_0_0%3D1"
+    },
+    {
+      "suggestion": "10 Infinite Loop, Cupertino CA 95014",
+      "matched": [
+        [
+          12,
+          16
+        ],
+        [
+          3,
+          11
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "format": "https://api.edq.com/capture/address/v2/format?country=USA&id=AVtsW5-i_VTqnTiM1gJV_U40_24_0_0_0%3D10"
+    },
+    {
+      "suggestion": "11 Infinite Loop, Cupertino CA 95014",
+      "matched": [
+        [
+          12,
+          16
+        ],
+        [
+          3,
+          11
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "format": "https://api.edq.com/capture/address/v2/format?country=USA&id=AVtsW5-i_VTqnTiM1gJV_U40_24_0_0_0%3D11"
+    },
+    {
+      "suggestion": "12 Infinite Loop, Cupertino CA 95014",
+      "matched": [
+        [
+          12,
+          16
+        ],
+        [
+          3,
+          11
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "format": "https://api.edq.com/capture/address/v2/format?country=USA&id=AVtsW5-i_VTqnTiM1gJV_U40_24_0_0_0%3D12"
+    },
+    {
+      "suggestion": "13 Infinite Loop, Cupertino CA 95014",
+      "matched": [
+        [
+          12,
+          16
+        ],
+        [
+          3,
+          11
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "format": "https://api.edq.com/capture/address/v2/format?country=USA&id=AVtsW5-i_VTqnTiM1gJV_U40_24_0_0_0%3D13"
+    },
+    {
+      "suggestion": "14 Infinite Loop, Cupertino CA 95014",
+      "matched": [
+        [
+          12,
+          16
+        ],
+        [
+          3,
+          11
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "format": "https://api.edq.com/capture/address/v2/format?country=USA&id=AVtsW5-i_VTqnTiM1gJV_U40_24_0_0_0%3D14"
+    },
+    {
+      "suggestion": "15 Infinite Loop, Cupertino CA 95014",
+      "matched": [
+        [
+          12,
+          16
+        ],
+        [
+          3,
+          11
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "format": "https://api.edq.com/capture/address/v2/format?country=USA&id=AVtsW5-i_VTqnTiM1gJV_U40_24_0_0_0%3D15"
+    },
+    {
+      "suggestion": "16 Infinite Loop, Cupertino CA 95014",
+      "matched": [
+        [
+          12,
+          16
+        ],
+        [
+          3,
+          11
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "format": "https://api.edq.com/capture/address/v2/format?country=USA&id=AVtsW5-i_VTqnTiM1gJV_U40_24_0_0_0%3D16"
+    },
+    {
+      "suggestion": "17 Infinite Loop, Cupertino CA 95014",
+      "matched": [
+        [
+          12,
+          16
+        ],
+        [
+          3,
+          11
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "format": "https://api.edq.com/capture/address/v2/format?country=USA&id=AVtsW5-i_VTqnTiM1gJV_U40_24_0_0_0%3D17"
+    },
+    {
+      "suggestion": "18 Infinite Loop, Cupertino CA 95014",
+      "matched": [
+        [
+          12,
+          16
+        ],
+        [
+          3,
+          11
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "format": "https://api.edq.com/capture/address/v2/format?country=USA&id=AVtsW5-i_VTqnTiM1gJV_U40_24_0_0_0%3D18"
+    }
+  ]
+}
