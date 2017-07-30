@@ -8,6 +8,9 @@ buildscript {
 		thymeleafVersion = '3.0.6.RELEASE'
 		thymeleafLayoutDialectVersion = '2.2.2'
 		janinoVersion = '3.0.7'
+
+		jaywayRestassuredVersion = '2.9.0'
+		mockServerNettyVersion = '3.10.4'
 	}
 
 	repositories {
@@ -73,6 +76,10 @@ dependencies {
 
 
 	testCompile('org.springframework.boot:spring-boot-starter-test')
+
+	testCompile("com.jayway.restassured:spring-mock-mvc:${jaywayRestassuredVersion}")
+
+	testCompile("org.mock-server:mockserver-netty:${mockServerNettyVersion}")
 }
 
 dependencyManagement {
