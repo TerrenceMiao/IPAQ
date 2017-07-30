@@ -1,6 +1,5 @@
 package org.paradise.ipaq.integration;
 
-import au.com.auspost.microservice.App;
 import com.jayway.restassured.RestAssured;
 import com.jayway.restassured.module.mockmvc.RestAssuredMockMvc;
 import org.apache.commons.io.IOUtils;
@@ -13,6 +12,7 @@ import org.mockserver.client.server.MockServerClient;
 import org.mockserver.integration.ClientAndServer;
 import org.mockserver.model.Body;
 import org.mockserver.model.JsonBody;
+import org.paradise.ipaq.ColtApplication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -32,21 +32,11 @@ import static org.springframework.boot.test.context.SpringBootTest.WebEnvironmen
  * @author terrence
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(webEnvironment = RANDOM_PORT, classes = { App.class, IntegrationConfig.class })
+@SpringBootTest(webEnvironment = RANDOM_PORT, classes = { ColtApplication.class, IntegrationConfig.class })
 @TestPropertySource("/test.properties")
 public abstract class AbstractIntegrationTest {
 
     public static final int MOCK_SERVER_PORT = 8000;
-
-    public static final String SHIPPING_API_PATH = "/shipping/v1";
-    public static final String CSSO_API_PATH = "/cssoapi/v2";
-    public static final String USERPREFERENCES_API_PATH = "/userpreferences/v1";
-    public static final String FEATURE_TOGGLE_PATH = "/featuretoggles/lodgement";
-    public static final String PRESENTATION_METADATA_PATH = "/accessone/v1/metadata/presentation";
-    public static final String PICKUPS_METADATA_PATH = "/accessone/v1/metadata/pickups";
-
-    public static final String TOKEN = "ObSSOCookie-token-in-Session-API";
-    public static final String BEARER = "I'm a Bearer, not a Token";
 
     protected static MockServerClient mockServerClient;
 
