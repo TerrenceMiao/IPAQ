@@ -10,7 +10,7 @@ import org.springframework.test.context.junit4.SpringRunner
  */
 @RunWith(SpringRunner::class)
 @SpringBootTest
-class ColtIntegrationTest {
+class ColtIntegrationTest : AbstractIntegrationTest() {
 
     @Test
     fun contextLoads() {

@@ -10,7 +10,6 @@ import org.junit.BeforeClass
 import org.junit.runner.RunWith
 import org.mockserver.client.server.MockServerClient
 import org.mockserver.integration.ClientAndServer
-import org.mockserver.model.Body
 import org.mockserver.model.JsonBody
 import org.paradise.ipaq.ColtApplication
 import org.springframework.beans.factory.annotation.Autowired
@@ -39,8 +38,9 @@ abstract class AbstractIntegrationTest {
 
     protected var mock: MockMvc? = null
 
-    @Value("\${local.server.port}")
+    @Value("\${local.server.port:0}")
     private val port: Int = 0
+
 
     @Before
     fun setup() {
@@ -72,16 +72,18 @@ abstract class AbstractIntegrationTest {
         protected var mockServerClient: MockServerClient? = null
 
         @BeforeClass
+        @JvmStatic
         fun beforeClass() {
             mockServerClient = ClientAndServer.startClientAndServer(MOCK_SERVER_PORT)
         }
 
         @AfterClass
+        @JvmStatic
         fun afterClass() {
             mockServerClient!!.stop()
         }
 
-        fun toJsonBody(resource: Resource): Body<*> {
+        fun toJsonBody(resource: Resource): JsonBody {
 
             try {
                 return JsonBody(IOUtils.toString(resource.inputStream, Charset.defaultCharset()))
