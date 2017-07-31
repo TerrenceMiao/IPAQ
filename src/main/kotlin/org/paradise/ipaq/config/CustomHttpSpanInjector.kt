@@ -1,4 +1,4 @@
-package org.paradise.ipaq.services.trace
+package org.paradise.ipaq.config
 
 import org.apache.commons.lang3.StringUtils
 import org.paradise.ipaq.Constants
@@ -13,6 +13,8 @@ import org.springframework.cloud.sleuth.instrument.web.ZipkinHttpSpanInjector
 class CustomHttpSpanInjector : ZipkinHttpSpanInjector() {
 
     override fun inject(span: Span, carrier: SpanTextMap) {
+
+        super.inject(span, carrier)
 
         val country = span.getBaggageItem(Constants.COUNTRY)
 

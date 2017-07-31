@@ -1,5 +1,6 @@
 package org.paradise.ipaq.services
 
+import com.fasterxml.jackson.databind.JsonNode
 import org.paradise.ipaq.Constants
 import org.paradise.ipaq.domain.ExperianAddress
 import org.paradise.ipaq.domain.ExperianSearchResult
@@ -68,6 +69,14 @@ class ExperianService(val restServiceClient: RestServiceClient,
         return ResponseEntity(experianAddressResult!!, HttpStatus.OK)
     }
 
+    fun healthCheck(): ResponseEntity<JsonNode> {
+
+        LOG.debug("Experian service health check")
+
+        return restServiceClient.exchange(String.format("%s/_admin/health", experianApiUrl), HttpMethod.GET, HttpEntity<Any>(requestHttpHeaders), JsonNode::class.java)
+    }
+
+    // -----------------------------------------------------------------------------------------------------------------
     private fun takeExperianSearchResult(experianSearchResult: ExperianSearchResult, take: Int): ExperianSearchResult {
 
         return if (experianSearchResult.count > take) ExperianSearchResult(take, experianSearchResult.results.stream().limit(take.toLong()).toList()) else experianSearchResult

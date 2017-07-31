@@ -1,14 +1,15 @@
 package org.paradise.ipaq.controllers
 
+import com.fasterxml.jackson.databind.JsonNode
+import org.paradise.ipaq.Constants
 import org.paradise.ipaq.domain.ExperianAddress
 import org.paradise.ipaq.domain.ExperianSearchResult
 import org.paradise.ipaq.services.ExperianService
+import org.slf4j.LoggerFactory
 import org.springframework.http.MediaType
 import org.springframework.http.ResponseEntity
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RequestMethod
-import org.springframework.web.bind.annotation.RequestParam
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
+
 /**
  * Created by terrence on 17/7/17.
  */
@@ -31,6 +32,19 @@ class IpaqController(val experianService: ExperianService, var environmentLocal:
     fun format(@RequestParam(value = "country") country: String,
                @RequestParam(value = "id") id: String): ResponseEntity<ExperianAddress>
             = experianService.format(country, id)
+
+    @RequestMapping(value = "/healthCheck", method = arrayOf(RequestMethod.GET), produces = arrayOf(MediaType.APPLICATION_JSON_VALUE))
+    fun healthCheck(@RequestHeader(value = Constants.COUNTRY) country: String): ResponseEntity<JsonNode>  {
+
+        LOG.debug("Country [{}]", country)
+
+        return experianService.healthCheck()
+    }
+
+    companion object {
+
+        private val LOG = LoggerFactory.getLogger(IpaqController::class.java)
+    }
 
 }
 

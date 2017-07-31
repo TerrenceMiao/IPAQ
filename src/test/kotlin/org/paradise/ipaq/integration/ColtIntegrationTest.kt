@@ -43,6 +43,23 @@ class ColtIntegrationTest : AbstractIntegrationTest() {
                 .body("count", CoreMatchers.equalTo<Int>(take.toInt()))
     }
 
+    @Test
+    @Throws(Exception::class)
+    fun testHealthCheck() {
+
+        setupHealthCheckExpectation()
+
+        RestAssured.given()
+                .accept(ContentType.JSON)
+                .header(Constants.COUNTRY, country)
+        .`when`()
+                .get("/healthCheck")
+        .then()
+                .log().all()
+        .assertThat()
+                .statusCode(HttpStatus.SC_OK)
+    }
+
     // -----------------------------------------------------------------------------------------------------------------
     private fun setupExperianSearchException() {
 
@@ -62,6 +79,20 @@ class ColtIntegrationTest : AbstractIntegrationTest() {
                         .withStatusCode(HttpStatus.SC_OK)
                         .withHeader(Header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE))
                         .withBody(toJsonBody(ClassPathResource("search-resp.json"))))
+    }
+
+    private fun setupHealthCheckExpectation() {
+
+        httpRequest = HttpRequest.request()
+                .withMethod(HttpMethod.GET.name)
+                .withHeader(HttpHeaders.ACCEPT, MediaType.APPLICATION_JSON_VALUE)
+                .withHeader(Constants.HTTP_HEADER_AUTH_TOKEN, AUTH_TOKEN)
+                .withHeader(Constants.COUNTRY, country)
+                .withPath("/_admin/health")
+
+        AbstractIntegrationTest.mockServerClient!!.`when`(httpRequest)
+                .respond(HttpResponse.response()
+                        .withStatusCode(HttpStatus.SC_OK))
     }
 
     companion object {
