@@ -1,6 +1,8 @@
 package org.paradise.ipaq.config
 
 import org.apache.commons.lang3.StringUtils
+import org.paradise.ipaq.services.trace.CustomHttpSpanExtractor
+import org.paradise.ipaq.services.trace.CustomHttpSpanInjector
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import java.util.regex.Pattern
@@ -12,15 +14,9 @@ import java.util.regex.Pattern
 class TraceConfig {
 
     @Bean
-    fun customerHttpSpanExtractor(): CustomHttpSpanExtractor {
-
-        return CustomHttpSpanExtractor(Pattern.compile(StringUtils.EMPTY))
-    }
+    fun customerHttpSpanExtractor(): CustomHttpSpanExtractor = CustomHttpSpanExtractor(Pattern.compile(StringUtils.EMPTY))
 
     @Bean
-    fun customerHttpSpanInjector(): CustomHttpSpanInjector {
-
-        return CustomHttpSpanInjector()
-    }
+    fun customerHttpSpanInjector(): CustomHttpSpanInjector = CustomHttpSpanInjector()
 
 }

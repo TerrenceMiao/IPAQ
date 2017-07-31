@@ -34,7 +34,7 @@ class IpaqController(val experianService: ExperianService, var environmentLocal:
             = experianService.format(country, id)
 
     @RequestMapping(value = "/healthCheck", method = arrayOf(RequestMethod.GET), produces = arrayOf(MediaType.APPLICATION_JSON_VALUE))
-    fun healthCheck(@RequestHeader(value = Constants.COUNTRY) country: String): ResponseEntity<JsonNode>  {
+    fun healthCheck(@RequestHeader(value = Constants.COUNTRY, required = false) country: String?): ResponseEntity<JsonNode>  {
 
         LOG.debug("Country [{}]", country)
 

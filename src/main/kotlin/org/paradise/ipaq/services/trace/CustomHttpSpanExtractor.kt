@@ -1,4 +1,4 @@
-package org.paradise.ipaq.config
+package org.paradise.ipaq.services.trace
 
 import org.apache.commons.lang3.StringUtils
 import org.paradise.ipaq.Constants
