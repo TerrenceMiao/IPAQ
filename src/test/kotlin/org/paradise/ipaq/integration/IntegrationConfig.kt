@@ -5,7 +5,7 @@ import org.apache.commons.lang3.StringUtils
 import org.mockito.Matchers.any
 import org.mockito.Matchers.anyString
 import org.mockito.Mockito.*
-import org.paradise.ipaq.Constants
+import org.paradise.ipaq.TestData
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.core.io.ClassPathResource
@@ -42,11 +42,11 @@ class IntegrationConfig {
         `when`(stringRedisTemplate.opsForValue()).thenReturn(valueOperations as ValueOperations<String, String>?)
 
         // Redis get()
-        `when`(valueOperations!!.get(eq(Constants.QUERY_ADDRESS + ", " + Constants.QUERY_COUNTRY)))
+        `when`(valueOperations!!.get(eq(TestData.QUERY_ADDRESS + ", " + TestData.QUERY_COUNTRY)))
                 .thenReturn(StringUtils.EMPTY)
                 .thenReturn(IOUtils.toString(ClassPathResource("search-resp.json").inputStream, Charset.defaultCharset()))
 
-        `when`(valueOperations!!.get(eq(Constants.QUERY_ID + ", " + Constants.QUERY_COUNTRY)))
+        `when`(valueOperations.get(eq(TestData.QUERY_ID + ", " + TestData.QUERY_COUNTRY)))
                 .thenReturn(StringUtils.EMPTY)
                 .thenReturn(IOUtils.toString(ClassPathResource("format-resp.json").inputStream, Charset.defaultCharset()))
 
