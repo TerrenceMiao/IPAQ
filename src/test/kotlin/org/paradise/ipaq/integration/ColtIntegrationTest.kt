@@ -47,6 +47,26 @@ class ColtIntegrationTest : AbstractIntegrationTest() {
 
     @Test
     @Throws(Exception::class)
+    fun testFormat() {
+
+        setupExperianFormatException()
+
+        RestAssured.given()
+                .accept(ContentType.JSON)
+                .header(Constants.COUNTRY, Constants.QUERY_COUNTRY)
+                .queryParam(PARAMETER_COUNTRY, Constants.QUERY_COUNTRY)
+                .queryParam(PARAMETER_ID, Constants.QUERY_ID)
+        .`when`()
+                .get(FORMAT)
+        .then()
+                .log().all()
+        .assertThat()
+                .statusCode(HttpStatus.SC_OK)
+                .contentType(ContentType.JSON)
+    }
+
+    @Test
+    @Throws(Exception::class)
     fun testHealthCheck() {
 
         setupHealthCheckExpectation()
@@ -83,6 +103,26 @@ class ColtIntegrationTest : AbstractIntegrationTest() {
                         .withBody(toJsonBody(ClassPathResource("search-resp.json"))))
     }
 
+    private fun setupExperianFormatException() {
+
+        // mock Experian Search operation
+        httpRequest = HttpRequest.request()
+                .withMethod(HttpMethod.GET.name)
+                .withPath(FORMAT)
+                .withHeader(HttpHeaders.ACCEPT, MediaType.APPLICATION_JSON_VALUE)
+                .withHeader(Constants.HTTP_HEADER_AUTH_TOKEN, AUTH_TOKEN)
+                // Spring Sleuth doesn't invoke on CustomHttpSpanInjector, and doesn't inject HTTP headers
+//                .withHeader(Constants.COUNTRY, country)
+                .withQueryStringParameter(PARAMETER_COUNTRY, Constants.QUERY_COUNTRY)
+                .withQueryStringParameter(PARAMETER_ID, Constants.QUERY_ID)
+
+        AbstractIntegrationTest.mockServerClient!!.`when`(httpRequest)
+                .respond(HttpResponse.response()
+                        .withStatusCode(HttpStatus.SC_OK)
+                        .withHeader(Header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE))
+                        .withBody(toJsonBody(ClassPathResource("format-resp.json"))))
+    }
+
     private fun setupHealthCheckExpectation() {
 
         httpRequest = HttpRequest.request()
@@ -105,12 +145,13 @@ class ColtIntegrationTest : AbstractIntegrationTest() {
 
         // operations
         private val SEARCH = "/Search"
-        private val FORMAT = "/Format"
+        private val FORMAT = "/format"
 
         // parameters
         private val PARAMETER_QUERY = "query"
         private val PARAMETER_COUNTRY = "country"
         private val PARAMETER_TAKE = "take"
+        private val PARAMETER_ID = "id"
     }
 
 }

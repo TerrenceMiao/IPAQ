@@ -46,6 +46,10 @@ class IntegrationConfig {
                 .thenReturn(StringUtils.EMPTY)
                 .thenReturn(IOUtils.toString(ClassPathResource("search-resp.json").inputStream, Charset.defaultCharset()))
 
+        `when`(valueOperations!!.get(eq(Constants.QUERY_ID + ", " + Constants.QUERY_COUNTRY)))
+                .thenReturn(StringUtils.EMPTY)
+                .thenReturn(IOUtils.toString(ClassPathResource("format-resp.json").inputStream, Charset.defaultCharset()))
+
         // Redis set()
         doNothing().`when`<ValueOperations<String, String>>(valueOperations).set(any(String::class.java), any(String::class.java))
 

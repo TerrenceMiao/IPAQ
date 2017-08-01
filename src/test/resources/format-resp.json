@@ -1,0 +1,51 @@
+{
+  "address": [
+    {
+      "addressLine1": "1 Infinite Loop"
+    },
+    {
+      "addressLine2": ""
+    },
+    {
+      "addressLine3": ""
+    },
+    {
+      "locality": "Cupertino"
+    },
+    {
+      "province": "CA"
+    },
+    {
+      "postalCode": "95014-2083"
+    },
+    {
+      "country": "UNITED STATES OF AMERICA"
+    }
+  ],
+  "components": [
+    {
+      "streetNumber1": "1"
+    },
+    {
+      "street1": "Infinite Loop"
+    },
+    {
+      "locality1": "Cupertino"
+    },
+    {
+      "county1": "Santa Clara"
+    },
+    {
+      "provinceCode1": "CA"
+    },
+    {
+      "postalCode1": "95014-2083"
+    },
+    {
+      "country1": "UNITED STATES OF AMERICA"
+    },
+    {
+      "countryISO1": "USA"
+    }
+  ]
+}
