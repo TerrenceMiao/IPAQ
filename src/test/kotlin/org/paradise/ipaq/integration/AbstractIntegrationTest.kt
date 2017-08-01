@@ -38,6 +38,7 @@ abstract class AbstractIntegrationTest {
 
     protected var mock: MockMvc? = null
 
+    // Spring Boot dynamic random port injected during runtime
     @Value("\${local.server.port}")
     protected val port: Int = 0
 
@@ -67,6 +68,7 @@ abstract class AbstractIntegrationTest {
 
     companion object {
 
+        // Same localhost and port defined in "test.properties"
         val MOCK_SERVER_PORT = 8000
 
         var mockServerClient: MockServerClient? = null
@@ -94,14 +96,17 @@ abstract class AbstractIntegrationTest {
         }
 
         protected fun asJson(endpoint: String): String {
+
             return endpoint + ".json"
         }
 
         protected fun asXml(endpoint: String): String {
+
             return endpoint + ".xml"
         }
 
         protected fun sizeOf(path: String): String {
+
             return path + ".size()"
         }
     }

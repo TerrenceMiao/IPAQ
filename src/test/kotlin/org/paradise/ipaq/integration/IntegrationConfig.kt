@@ -5,6 +5,7 @@ import org.apache.commons.lang3.StringUtils
 import org.mockito.Matchers.any
 import org.mockito.Matchers.anyString
 import org.mockito.Mockito.*
+import org.paradise.ipaq.Constants
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.core.io.ClassPathResource
@@ -40,12 +41,15 @@ class IntegrationConfig {
         @Suppress("UNCHECKED_CAST")
         `when`(stringRedisTemplate.opsForValue()).thenReturn(valueOperations as ValueOperations<String, String>?)
 
-        `when`(valueOperations!!.get(eq("1 Infinite Loop, USA")))
+        // Redis get()
+        `when`(valueOperations!!.get(eq(Constants.QUERY_ADDRESS + ", " + Constants.QUERY_COUNTRY)))
                 .thenReturn(StringUtils.EMPTY)
                 .thenReturn(IOUtils.toString(ClassPathResource("search-resp.json").inputStream, Charset.defaultCharset()))
 
+        // Redis set()
         doNothing().`when`<ValueOperations<String, String>>(valueOperations).set(any(String::class.java), any(String::class.java))
 
+        // Redis delete()
         doNothing().`when`(stringRedisTemplate).delete(anyString())
 
         return stringRedisTemplate

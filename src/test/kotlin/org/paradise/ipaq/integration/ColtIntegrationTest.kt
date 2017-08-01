@@ -25,13 +25,15 @@ class ColtIntegrationTest : AbstractIntegrationTest() {
     @Throws(Exception::class)
     fun testSearch() {
 
+        val take = 10
+
         setupExperianSearchException()
 
         RestAssured.given()
                 .accept(ContentType.JSON)
-                .header(Constants.COUNTRY, country)
-                .queryParam(PARAMETER_QUERY, query)
-                .queryParam(PARAMETER_COUNTRY, country)
+                .header(Constants.COUNTRY, Constants.QUERY_COUNTRY)
+                .queryParam(PARAMETER_QUERY, Constants.QUERY_ADDRESS)
+                .queryParam(PARAMETER_COUNTRY, Constants.QUERY_COUNTRY)
                 .queryParam(PARAMETER_TAKE, take)
         .`when`()
                 .get(SEARCH)
@@ -40,7 +42,7 @@ class ColtIntegrationTest : AbstractIntegrationTest() {
         .assertThat()
                 .statusCode(HttpStatus.SC_OK)
                 .contentType(ContentType.JSON)
-                .body("count", CoreMatchers.equalTo<Int>(take.toInt()))
+                .body("count", CoreMatchers.equalTo<Int>(take))
     }
 
     @Test
@@ -70,8 +72,8 @@ class ColtIntegrationTest : AbstractIntegrationTest() {
                 .withHeader(Constants.HTTP_HEADER_AUTH_TOKEN, AUTH_TOKEN)
                 // Spring Sleuth doesn't invoke on CustomHttpSpanInjector, and doesn't inject HTTP headers
 //                .withHeader(Constants.COUNTRY, country)
-                .withQueryStringParameter(PARAMETER_QUERY, query)
-                .withQueryStringParameter(PARAMETER_COUNTRY, country)
+                .withQueryStringParameter(PARAMETER_QUERY, Constants.QUERY_ADDRESS)
+                .withQueryStringParameter(PARAMETER_COUNTRY, Constants.QUERY_COUNTRY)
                 .withQueryStringParameter(PARAMETER_TAKE, Constants.MAXIMUM_TAKE.toString())
 
         AbstractIntegrationTest.mockServerClient!!.`when`(httpRequest)
@@ -98,18 +100,17 @@ class ColtIntegrationTest : AbstractIntegrationTest() {
 
     companion object {
 
+        // same Auth Token as defined in "test.properties" file
         private val AUTH_TOKEN = "9b63a00a-a3f7-440f-996f-c07199303587"
 
+        // operations
         private val SEARCH = "/Search"
+        private val FORMAT = "/Format"
 
+        // parameters
         private val PARAMETER_QUERY = "query"
-        private val query = "1 Infinite Loop"
-
         private val PARAMETER_COUNTRY = "country"
-        private val country = "USA"
-
         private val PARAMETER_TAKE = "take"
-        private val take = "10"
     }
 
 }
