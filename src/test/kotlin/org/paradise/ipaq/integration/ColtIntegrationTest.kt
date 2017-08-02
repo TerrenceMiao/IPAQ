@@ -92,7 +92,7 @@ class ColtIntegrationTest : AbstractIntegrationTest() {
                 .withHeader(HttpHeaders.ACCEPT, MediaType.APPLICATION_JSON_VALUE)
                 .withHeader(Constants.HTTP_HEADER_AUTH_TOKEN, AUTH_TOKEN)
                 // Spring Sleuth doesn't invoke on CustomHttpSpanInjector, and doesn't inject HTTP headers
-//                .withHeader(TestData.COUNTRY, country)
+//                .withHeader(Constants.COUNTRY, TestData.QUERY_COUNTRY)
                 .withQueryStringParameter(PARAMETER_QUERY, TestData.QUERY_ADDRESS)
                 .withQueryStringParameter(PARAMETER_COUNTRY, TestData.QUERY_COUNTRY)
                 .withQueryStringParameter(PARAMETER_TAKE, Constants.MAXIMUM_TAKE.toString())
@@ -113,7 +113,7 @@ class ColtIntegrationTest : AbstractIntegrationTest() {
                 .withHeader(HttpHeaders.ACCEPT, MediaType.APPLICATION_JSON_VALUE)
                 .withHeader(Constants.HTTP_HEADER_AUTH_TOKEN, AUTH_TOKEN)
                 // Spring Sleuth doesn't invoke on CustomHttpSpanInjector, and doesn't inject HTTP headers
-//                .withHeader(TestData.COUNTRY, country)
+//                .withHeader(Constants.COUNTRY, TestData.QUERY_COUNTRY)
                 .withQueryStringParameter(PARAMETER_COUNTRY, TestData.QUERY_COUNTRY)
                 .withQueryStringParameter(PARAMETER_ID, TestData.QUERY_ID)
 
@@ -131,7 +131,7 @@ class ColtIntegrationTest : AbstractIntegrationTest() {
                 .withHeader(HttpHeaders.ACCEPT, MediaType.APPLICATION_JSON_VALUE)
                 .withHeader(Constants.HTTP_HEADER_AUTH_TOKEN, AUTH_TOKEN)
                 // Spring Sleuth doesn't invoke on CustomHttpSpanInjector, and doesn't inject HTTP headers
-//                .withHeader(TestData.COUNTRY, country)
+//                .withHeader(Constants.COUNTRY, TestData.QUERY_COUNTRY)
                 .withPath("/_admin/health")
 
         AbstractIntegrationTest.mockServerClient!!.`when`(httpRequest)
