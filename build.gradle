@@ -3,7 +3,7 @@ buildscript {
 	ext {
 		kotlinVersion = '1.1.3-2'
 		springBootVersion = '1.5.4.RELEASE'
-		springSleuthVersion = '1.2.2.RELEASE'
+		springSleuthVersion = '1.2.1.RELEASE'
 		apacheCommonsLang3Version = '3.6'
 		httpClientVersion = '4.5.2'
 		thymeleafVersion = '3.0.6.RELEASE'
